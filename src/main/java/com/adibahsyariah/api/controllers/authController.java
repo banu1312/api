@@ -3,6 +3,7 @@ package com.adibahsyariah.api.controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adibahsyariah.api.entity.User;
 import com.adibahsyariah.api.models.LoginRequest;
 import com.adibahsyariah.api.models.LoginResponse;
 import com.adibahsyariah.api.models.UserResponse;
@@ -14,15 +15,19 @@ import com.adibahsyariah.api.services.userService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
 @RequestMapping("/api/auth/")
+@CrossOrigin
 @RequiredArgsConstructor
 public class authController {
-    
      private final authService authService;
      private final userService userService;
     @PostMapping("login")

@@ -8,6 +8,7 @@ import com.adibahsyariah.api.models.createUserRequest;
 import com.adibahsyariah.api.models.UserResponse;
 import com.adibahsyariah.api.models.WebResponse;
 import com.adibahsyariah.api.models.updateUser;
+import com.adibahsyariah.api.services.authService;
 import com.adibahsyariah.api.services.userService;
 
 
@@ -29,6 +30,7 @@ public class userController {
 
     @Autowired
     private userService userService;
+    private authService authService;
 
     @GetMapping
     public WebResponse<Object> getAllData() {
@@ -38,6 +40,11 @@ public class userController {
     @GetMapping("{id}")
     public WebResponse<Object> getDataById(@PathVariable Long id) {
         return WebResponse.<Object>builder().data(userService.GetUserById(id)).build();
+    }
+
+    @GetMapping("profile")
+    public WebResponse<UserResponse> getUserlogin() {
+            return WebResponse.<UserResponse>builder().data(authService.getUser()).build();
     }
     
      @PostMapping(
