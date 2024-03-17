@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,11 +26,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/user/")
 public class userController {
 
     @Autowired
     private userService userService;
+    @Autowired
     private authService authService;
 
     @GetMapping
@@ -42,7 +45,7 @@ public class userController {
         return WebResponse.<Object>builder().data(userService.GetUserById(id)).build();
     }
 
-    @GetMapping("profile")
+    @GetMapping("me")
     public WebResponse<UserResponse> getUserlogin() {
             return WebResponse.<UserResponse>builder().data(authService.getUser()).build();
     }
